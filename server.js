@@ -33,7 +33,7 @@ app.get("/api/whoami", (req, res) => {
   }
 
   res.json({
-    ipadress: ip,
+    ipaddress: ip,
     language: req.headers["accept-language"],
     software: req.headers["user-agent"],
   });
