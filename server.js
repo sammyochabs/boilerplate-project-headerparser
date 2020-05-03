@@ -25,7 +25,13 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/whoami", (req, res) => {
   console.log(req.headers);
-  let ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
+  let ip = req.header("x-forwarded-for");
+  if (ip === undefined) {
+    ip = req.ip;
+  } else {
+    ip = ip.match(/[\d\.]{7,}/)[0];
+  }
+
   res.json({
     ipadress: ip,
     language: req.headers["accept-language"],
